@@ -26,7 +26,7 @@ class BookCreate extends Component {
                 <CardSection>
                     <Input 
                         label="Published Date"
-                        placeholder="1/1/1999"
+                        placeholder="2016-01-01"
                         value={this.props.published_date}
                         onChangeText={text => this.props.bookUpdate({ prop: 'published_date', value: text})}
                     />
@@ -66,6 +66,7 @@ class BookCreate extends Component {
 
 const mapStateToProps = (state) => {
   const { author_name, published_date, book_title, book_image, error } = state.bookForm;
+  //const { user } = state.auth;
   
   return { author_name, published_date, book_title, book_image, error };
 };
