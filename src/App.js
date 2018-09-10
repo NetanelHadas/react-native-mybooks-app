@@ -9,7 +9,15 @@ import Router from "./Router";
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
-//const store = createStore(reducers);
+console.ignoredYellowBox = [
+  'Setting a timer',
+  'Warning: In next release empty',
+  'Warning: React',
+  'Warning: Can',
+  'Unable to symbolicate',
+  'Remote debugger',
+  'Warning: isMounted'
+];
 
 class App extends Component {
     componentWillMount() {

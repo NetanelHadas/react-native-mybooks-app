@@ -7,7 +7,9 @@ import {
   ENTERED_EMPTY_FIELD,
   DATE_FIELD_ERROR,
   BOOK_CREATE,
-  BOOKS_FETCH_SUCCESS
+  BOOKS_FETCH_SUCCESS,
+  BOOK_SAVE_SUCCESS,
+  BOOK_SAVE_CANCEL
 } from "./types";
 
 export const bookUpdate = ({ prop, value }) => {
@@ -17,7 +19,7 @@ export const bookUpdate = ({ prop, value }) => {
     };
 };
 
-export const bookCreate = ({ author_name, published_date, book_title, book_image, user }) => {
+export const bookCreate = ({ author_name, published_date, book_title, book_image }) => {
     const pdate = moment(published_date);
     
     // strings – not empty
@@ -63,3 +65,36 @@ export const booksFetch = () => {
             });       
     };
 };
+
+export const bookSave = ({ author_name, published_date, book_title, book_image, uid }) => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+      firebase.database().ref(`/users/${currentUser}/books/${uid}`)
+        .set({ author_name, published_date, book_title, book_image })
+        .then(() => {
+            dispatch({ type: BOOK_SAVE_SUCCESS });
+            Actions.pop();
+        });  
+    };
+};
+
+export const bookSaveCancel = () => {
+    return {
+        type: BOOK_SAVE_CANCEL
+    };
+}
+
+export const bookDelete = ({ uid }) => {
+    const { currentUser } = firebase.auth();
+    
+    return () => {
+        firebase.database().ref(`/users/${currentUser}/books/${uid}`)
+            .remove()
+            .then(() => {
+                Actions.pop();
+            });
+    };
+};
+
+// With authentication we need to change each currentUser to currentUser.uid

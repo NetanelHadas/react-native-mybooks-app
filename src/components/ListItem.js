@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableWithoutFeedback } from "react-native";
+import { Text, View, Image } from "react-native";
 import { Actions } from 'react-native-router-flux';
 import { Card, CardSection, Button } from "./common";
 
 class ListItem extends Component {
     
     onButtonPress = () => {
-        Actions.bookCreate({ book: this.props.book });
+        Actions.bookEdit({ book: this.props.book.item });
+    }
+
+    showImage = () => {
+        const { book_image } = this.props.book.item;
+        const { imageStyle } = styles;
+
+        if (book_image) {
+            return (
+                <CardSection>
+                    <Image style={imageStyle} source={{ uri: book_image }} />
+                </CardSection>
+            )
+        }
+
+        return null;
     }
     
     render = () => {
@@ -27,10 +42,8 @@ class ListItem extends Component {
               </View>
             </CardSection>
 
-            <CardSection>
-              <Image style={imageStyle} source={{ uri: book_image }} />
-            </CardSection>
-
+            {this.showImage()}
+            
             <CardSection>
               <View style={bodyContentStyle}>
                 <Text style={bodyTextStyle}>
@@ -56,7 +69,6 @@ const styles = {
   headerTextStyle: {
     fontSize: 18,
     fontWeight: "bold",
-    
   },
   bodyContentStyle: {
     flexDirection: "column",

@@ -1,5 +1,5 @@
 import {
-    BOOKS_FETCH_SUCCESS
+    BOOKS_FETCH_SUCCESS,
 } from '../actions/types';
 
 const INITIAL_STATE = {};

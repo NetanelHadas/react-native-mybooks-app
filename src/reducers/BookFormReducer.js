@@ -2,7 +2,9 @@ import {
     BOOK_UPDATE,
     ENTERED_EMPTY_FIELD,
     DATE_FIELD_ERROR,
-    BOOK_CREATE
+    BOOK_CREATE,
+    BOOK_SAVE_SUCCESS,
+    BOOK_SAVE_CANCEL
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -23,6 +25,10 @@ export default (state = INITIAL_STATE, action) => {
         case DATE_FIELD_ERROR:
             return { ...state, error: 'Invalid Date'};
         case BOOK_CREATE:
+            return INITIAL_STATE;
+        case BOOK_SAVE_SUCCESS:
+            return INITIAL_STATE;
+        case BOOK_SAVE_CANCEL:
             return INITIAL_STATE;
         default:
             return state;

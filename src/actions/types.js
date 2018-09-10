@@ -11,3 +11,5 @@ export const ENTERED_EMPTY_FIELD = 'entered_empty_field';
 export const DATE_FIELD_ERROR = 'date_field_error';
 export const BOOK_CREATE = 'book_create';
 export const BOOKS_FETCH_SUCCESS = 'books_fetch_success';
+export const BOOK_SAVE_SUCCESS = 'book_save_success';
+export const BOOK_SAVE_CANCEL = 'book_save_cancel';
