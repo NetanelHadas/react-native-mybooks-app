@@ -14,11 +14,12 @@ const RouterComponent = () => {
                 </Scene> */}
                 <Scene key="main">
                     <Scene
+                        titleStyle={{ textAlign: 'center', flex: 1 }}
                         rightTitle="Add"
                         onRight={() => { Actions.bookCreate() }}
                         key="bookList"
                         component={BookList} 
-                        title="Books"
+                        title="MyBooks"
                         initial
                     />
                     <Scene 
