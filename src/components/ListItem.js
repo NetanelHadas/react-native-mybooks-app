@@ -1,63 +1,76 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Card, CardSection } from './common';
+import { Text, View, Image, TouchableWithoutFeedback } from "react-native";
+import { Actions } from 'react-native-router-flux';
+import { Card, CardSection, Button } from "./common";
 
 class ListItem extends Component {
+    
+    onButtonPress = () => {
+        Actions.bookCreate({ book: this.props.book });
+    }
+    
     render = () => {
-        const { author_name } = this.props.book;
-
+        const { author_name, published_date, book_title, book_image } = this.props.book.item;
+        
         const {
             headerContentStyle,
+            bodyContentStyle,
             headerTextStyle,
+            bodyTextStyle,
             imageStyle
         } = styles;
 
-        return(
-            <Card>
-                {/* <CardSection>
-                    <View style={headerContentStyle}>
-                        <Text style={headerTextStyle}>{book_title}</Text>
-                    </View>
-                </CardSection>
+        return <Card>
+            <CardSection>
+              <View style={headerContentStyle}>
+                <Text style={headerTextStyle}>{book_title}</Text>
+              </View>
+            </CardSection>
 
-                <CardSection>
-                    <Image
-                        style={imageStyle}
-                        source={{ uri: book_image }}
-                    />
-                </CardSection> */}
+            <CardSection>
+              <Image style={imageStyle} source={{ uri: book_image }} />
+            </CardSection>
 
-                <CardSection>
-                    <View style={headerContentStyle}>
-                        <Text style={headerTextStyle}>{author_name}</Text>
-                        <Text>{published_date}</Text>
-                    </View>
-                </CardSection>
+            <CardSection>
+              <View style={bodyContentStyle}>
+                <Text style={bodyTextStyle}>
+                  Author Name: {author_name}
+                </Text>
+                <Text style={bodyTextStyle}>
+                  Published Date: {published_date}
+                </Text>
+              </View>
+            </CardSection>
 
-                {/* <CardSection>
-                    <Button>
-                        Edit Book
-                    </Button>
-                </CardSection> */}
-            </Card>
-        );
+            <CardSection>
+                <Button onPress={this.onButtonPress.bind(this)}>Edit Book</Button>
+            </CardSection>
+          </Card>;
     }
 }
 
-export default ListItem;
-
 const styles = {
-    headerContentStyle: {
-        flexDirection: 'column',
-        justifyContent: 'space-around'
-    },
-    headerTextStyle: {
-        fontSize: 18
-    },
-    imageStyle: {
-        height: 300,
-        flex: 1,
-        width: null
-        // important: flex 1 and width null will stretch the picture the entire width of the device.
-    },
-}
+  headerContentStyle: {
+    justifyContent: "space-around",
+  },
+  headerTextStyle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    
+  },
+  bodyContentStyle: {
+    flexDirection: "column",
+    justifyContent: "space-around"
+  },
+  bodyTextStyle: {
+    fontSize: 18
+  },
+  imageStyle: {
+    height: 300,
+    flex: 1,
+    width: null
+    // important: flex 1 and width null will stretch the picture the entire width of the device.
+  }
+};
+
+export default ListItem;
