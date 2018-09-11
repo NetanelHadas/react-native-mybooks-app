@@ -14,7 +14,8 @@ const RouterComponent = () => {
                 </Scene> */}
                 <Scene key="main">
                     <Scene
-                        titleStyle={{ textAlign: 'center', flex: 1 }}
+                        titleStyle={{ textAlign: 'center', flex: 1, marginLeft: 70 }}
+                        rightButtonStyle={{ right: 0 }}
                         rightTitle="Add"
                         onRight={() => { Actions.bookCreate() }}
                         key="bookList"

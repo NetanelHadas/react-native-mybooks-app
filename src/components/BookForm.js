@@ -20,7 +20,7 @@ class BookForm extends Component {
                 <CardSection>
                     <Input
                         label="Published Date"
-                        placeholder="2016-01-01"
+                        placeholder="year-month-day"
                         value={this.props.published_date}
                         onChangeText={text => this.props.bookUpdate({ prop: 'published_date', value: text })}
                     />

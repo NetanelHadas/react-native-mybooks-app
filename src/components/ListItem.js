@@ -78,7 +78,7 @@ const styles = {
     fontSize: 18
   },
   imageStyle: {
-    height: 300,
+    height: 500,
     flex: 1,
     width: null
     // important: flex 1 and width null will stretch the picture the entire width of the device.
