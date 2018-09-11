@@ -24,11 +24,13 @@ const RouterComponent = () => {
                         initial
                     />
                     <Scene 
+                        titleStyle={{ textAlign: 'center', flex: 1, marginRight: 70 }}
                         key="bookCreate"
                         component={BookCreate}
                         title="Create Book"
                     />
                     <Scene
+                        titleStyle={{ textAlign: 'center', flex: 1, marginRight: 70 }}
                         key="bookEdit"
                         component={BookEdit}
                         title="Edit Book"
