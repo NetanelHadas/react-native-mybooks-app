@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection, Input } from './common';
+import { CardSection, Input, MyDatePicker } from './common';
 import { bookUpdate } from '../actions';
 
 class BookForm extends Component {
@@ -17,12 +17,21 @@ class BookForm extends Component {
                     />
                 </CardSection>
 
-                <CardSection>
+                {/* <CardSection>
                     <Input
                         label="Published Date"
-                        placeholder="year-month-day"
+                        placeholder="YYYY-MM-DD"
                         value={this.props.published_date}
                         onChangeText={text => this.props.bookUpdate({ prop: 'published_date', value: text })}
+                    />
+                </CardSection> */}
+
+                <CardSection>
+                    <MyDatePicker 
+                        label="Published Date"
+                        placeholder="Select Publish Date"
+                        value={this.props.published_date}
+                        onDateChange={text => this.props.bookUpdate({ prop: 'published_date', value: text })}
                     />
                 </CardSection>
 
