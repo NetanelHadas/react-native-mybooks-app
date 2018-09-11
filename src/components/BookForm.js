@@ -29,7 +29,7 @@ class BookForm extends Component {
                 <CardSection>
                     <MyDatePicker 
                         label="Published Date"
-                        placeholder="Select Publish Date"
+                        placeholder="Select Published Date"
                         value={this.props.published_date}
                         onDateChange={text => this.props.bookUpdate({ prop: 'published_date', value: text })}
                     />
