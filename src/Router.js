@@ -7,14 +7,17 @@ import BookEdit from './components/BookEdit';
 
 const RouterComponent = () => {
     return (
-        <Router>
+        <Router
+        titleStyle={{ fontFamily: 'Pacifico-Regular' }}
+        >
             <Scene key="root" hideNavBar>
                 {/* <Scene key="auth">
                     <Scene key="login" component={LoginForm} title="Please Login"  />
                 </Scene> */}
                 <Scene key="main">
                     <Scene
-                        titleStyle={{ textAlign: 'center', flex: 1, marginLeft: 70 }}
+                        navigationBarStyle={{ backgroundColor: '#FF8C00' }}
+                        titleStyle={{ textAlign: 'center', flex: 1, marginLeft: 70, color: '#FFD700' }}
                         rightButtonStyle={{ right: 0 }}
                         rightTitle="Add"
                         onRight={() => { Actions.bookCreate() }}
