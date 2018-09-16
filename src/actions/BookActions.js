@@ -21,7 +21,9 @@ export const bookUpdate = ({ prop, value }) => {
 
 export const bookCreate = ({ author_name, published_date, book_title, book_image }) => {
     const pdate = moment(published_date);
-    
+    author_name = (uppercase(author_name)).replace(/[^a-zA-Z ]/g, "");
+    book_title = (uppercase(book_title)).replace(/[^a-zA-Z ]/g, "");
+   
     // strings – not empty
     if((author_name === '') || (book_title === '')) {
         return (dispatch) => emptyFieldError(dispatch);    
@@ -30,7 +32,7 @@ export const bookCreate = ({ author_name, published_date, book_title, book_image
     if (!pdate.isValid()) {
         return (dispatch) => dateFieldError(dispatch);
     }
-
+    
     const { currentUser } = firebase.auth();
     
     return (dispatch) => {
@@ -55,6 +57,16 @@ const dateFieldError = (dispatch) => {
   });
 };
 
+const uppercase = (str) => {
+  let array1 = str.split(' ');
+  let newarray1 = [];
+    
+  for(let x = 0; x < array1.length; x++){
+      newarray1.push(array1[x].charAt(0).toUpperCase()+array1[x].slice(1));
+  }
+  return newarray1.join(' ');
+}
+
 export const booksFetch = () => {
     const { currentUser } = firebase.auth();
     
@@ -68,6 +80,19 @@ export const booksFetch = () => {
 
 export const bookSave = ({ author_name, published_date, book_title, book_image, uid }) => {
     const { currentUser } = firebase.auth();
+
+    const pdate = moment(published_date);
+    author_name = (uppercase(author_name)).replace(/[^a-zA-Z. ]/g, "");
+    book_title = (uppercase(book_title)).replace(/[^a-zA-Z. ]/g, "");
+
+    // strings – not empty
+    if((author_name === '') || (book_title === '')) {
+        return (dispatch) => emptyFieldError(dispatch);    
+    };
+    // date – valid date 
+    if (!pdate.isValid()) {
+        return (dispatch) => dateFieldError(dispatch);
+    }
 
     return (dispatch) => {
       firebase.database().ref(`/users/${currentUser}/books/${uid}`)

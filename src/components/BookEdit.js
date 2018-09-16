@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button, Confirm } from './common';
 import BookForm from './BookForm';
@@ -39,6 +40,7 @@ class BookEdit extends Component {
         return (
             <Card>
                 <BookForm />
+                
                 <CardSection>
                     <Button onPress={this.onButtonPress.bind(this)}>
                         Save Changes
@@ -50,6 +52,10 @@ class BookEdit extends Component {
                         Delete Book
                     </Button>
                 </CardSection>
+
+                <Text style={styles.errorTextStyle}>
+                    {this.props.error}
+                </Text>
 
                 <Confirm
                     visible={this.state.showModal}
@@ -64,9 +70,17 @@ class BookEdit extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { author_name, published_date, book_title, book_image } = state.bookForm;
+    const { author_name, published_date, book_title, book_image, error } = state.bookForm;
 
-    return { author_name, published_date, book_title, book_image };
+    return { author_name, published_date, book_title, book_image, error };
 }
 
 export default connect(mapStateToProps, { bookUpdate, bookSave, bookSaveCancel, bookDelete })(BookEdit);
+
+const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: "center",
+    color: "red"
+  }
+};
