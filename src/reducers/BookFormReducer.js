@@ -25,8 +25,6 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, error: 'Empty Field' };
         case DATE_FIELD_ERROR:
             return { ...state, error: 'Invalid Date'};
-        case UPPERCASE_ERROR:
-            return { ...state, error: 'First Letter Must Be Capital Letter'}
         case BOOK_CREATE:
             return INITIAL_STATE;
         case BOOK_SAVE_SUCCESS:

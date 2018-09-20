@@ -21,8 +21,8 @@ export const bookUpdate = ({ prop, value }) => {
 
 export const bookCreate = ({ author_name, published_date, book_title, book_image }) => {
     const pdate = moment(published_date);
-    author_name = (uppercase(author_name)).replace(/[^a-zA-Z ]/g, "");
-    book_title = (uppercase(book_title)).replace(/[^a-zA-Z ]/g, "");
+    author_name = uppercase(removeNonNumericChars(author_name));
+    book_title = uppercase(removeNonNumericChars(book_title));
    
     // strings – not empty
     if((author_name === '') || (book_title === '')) {
@@ -67,6 +67,10 @@ const uppercase = (str) => {
   return newarray1.join(' ');
 }
 
+const removeNonNumericChars = (str) => {
+    return str.replace(/[^a-zA-Z. ]/g, "");
+}
+
 export const booksFetch = () => {
     const { currentUser } = firebase.auth();
     
@@ -82,8 +86,8 @@ export const bookSave = ({ author_name, published_date, book_title, book_image, 
     const { currentUser } = firebase.auth();
 
     const pdate = moment(published_date);
-    author_name = (uppercase(author_name)).replace(/[^a-zA-Z. ]/g, "");
-    book_title = (uppercase(book_title)).replace(/[^a-zA-Z. ]/g, "");
+    author_name = uppercase(removeNonNumericChars(author_name));
+    book_title = uppercase(removeNonNumericChars(book_title));
 
     // strings – not empty
     if((author_name === '') || (book_title === '')) {
